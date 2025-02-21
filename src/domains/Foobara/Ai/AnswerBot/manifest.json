@@ -1,0 +1,32 @@
+{
+  "scoped_path": [
+    "AnswerBot"
+  ],
+  "scoped_name": "AnswerBot",
+  "scoped_short_name": "AnswerBot",
+  "scoped_prefix": null,
+  "scoped_full_path": [
+    "Foobara",
+    "Ai",
+    "AnswerBot"
+  ],
+  "scoped_full_name": "Foobara::Ai::AnswerBot",
+  "scoped_category": "domain",
+  "reference": "Foobara::Ai::AnswerBot",
+  "domain": "Foobara::Ai::AnswerBot",
+  "organization": "Foobara::Ai",
+  "parent": [
+    "organization",
+    "Foobara::Ai"
+  ],
+  "commands": [
+    "Foobara::Ai::AnswerBot::Ask"
+  ],
+  "types": [
+    "Foobara::Ai::AnswerBot::model"
+  ],
+  "depends_on": [
+    "Foobara::Ai::AnthropicApi",
+    "Foobara::Ai::OpenAiApi"
+  ]
+}

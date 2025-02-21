@@ -1,0 +1,368 @@
+{
+  "scoped_path": [
+    "Ask"
+  ],
+  "scoped_name": "Ask",
+  "scoped_short_name": "Ask",
+  "scoped_prefix": null,
+  "scoped_full_path": [
+    "Foobara",
+    "Ai",
+    "AnswerBot",
+    "Ask"
+  ],
+  "scoped_full_name": "Foobara::Ai::AnswerBot::Ask",
+  "scoped_category": "command",
+  "reference": "Foobara::Ai::AnswerBot::Ask",
+  "domain": "Foobara::Ai::AnswerBot",
+  "organization": "Foobara::Ai",
+  "parent": [
+    "domain",
+    "Foobara::Ai::AnswerBot"
+  ],
+  "types_depended_on": [
+    "Foobara::Ai::AnswerBot::model",
+    "array",
+    "attributes",
+    "duck",
+    "string",
+    "symbol"
+  ],
+  "inputs_types_depended_on": [
+    "Foobara::Ai::AnswerBot::model",
+    "array",
+    "attributes",
+    "duck",
+    "string",
+    "symbol"
+  ],
+  "result_types_depended_on": [
+    "string"
+  ],
+  "errors_types_depended_on": [
+    "array",
+    "attributes",
+    "duck",
+    "symbol"
+  ],
+  "possible_errors": {
+    "data.cannot_cast": {
+      "category": "data",
+      "symbol": "cannot_cast",
+      "key": "data.cannot_cast",
+      "error": "Foobara::Value::Processor::Casting::CannotCastError",
+      "processor_class": "Foobara::Value::Processor::Casting",
+      "processor_manifest_data": {
+        "casting": {
+          "cast_to": {
+            "type": "attributes",
+            "element_type_declarations": {
+              "question": {
+                "description": "whatever you want to know!",
+                "type": "string"
+              },
+              "service": {
+                "one_of": [
+                  "open-ai",
+                  "anthropic"
+                ],
+                "type": "string"
+              },
+              "model": {
+                "type": "Foobara::Ai::AnswerBot::model"
+              }
+            },
+            "required": [
+              "question"
+            ],
+            "defaults": {
+              "model": "gpt-3.5-turbo"
+            }
+          }
+        }
+      }
+    },
+    "data.missing_required_attribute": {
+      "category": "data",
+      "symbol": "missing_required_attribute",
+      "key": "data.missing_required_attribute",
+      "error": "attributes::SupportedValidators::Required::MissingRequiredAttributeError",
+      "processor_class": "Foobara::Value::Processor::Pipeline",
+      "processor_manifest_data": {
+        "pipeline": null
+      }
+    },
+    "data.model.cannot_cast": {
+      "path": [
+        "model"
+      ],
+      "category": "data",
+      "symbol": "cannot_cast",
+      "key": "data.model.cannot_cast",
+      "error": "Foobara::Value::Processor::Casting::CannotCastError",
+      "processor_manifest_data": {
+        "casting": {
+          "cast_to": {
+            "one_of": [
+              "babbage-002",
+              "chatgpt-4o-latest",
+              "claude-2.0",
+              "claude-2.1",
+              "claude-3-5-haiku-20241022",
+              "claude-3-5-sonnet-20240620",
+              "claude-3-5-sonnet-20241022",
+              "claude-3-haiku-20240307",
+              "claude-3-opus-20240229",
+              "claude-3-sonnet-20240229",
+              "dall-e-2",
+              "dall-e-3",
+              "davinci-002",
+              "gpt-3.5-turbo",
+              "gpt-3.5-turbo-0125",
+              "gpt-3.5-turbo-1106",
+              "gpt-3.5-turbo-16k",
+              "gpt-3.5-turbo-instruct",
+              "gpt-3.5-turbo-instruct-0914",
+              "gpt-4",
+              "gpt-4-0125-preview",
+              "gpt-4-0613",
+              "gpt-4-1106-preview",
+              "gpt-4-turbo",
+              "gpt-4-turbo-2024-04-09",
+              "gpt-4-turbo-preview",
+              "gpt-4o",
+              "gpt-4o-2024-05-13",
+              "gpt-4o-2024-08-06",
+              "gpt-4o-2024-11-20",
+              "gpt-4o-audio-preview",
+              "gpt-4o-audio-preview-2024-10-01",
+              "gpt-4o-audio-preview-2024-12-17",
+              "gpt-4o-mini",
+              "gpt-4o-mini-2024-07-18",
+              "gpt-4o-mini-audio-preview",
+              "gpt-4o-mini-audio-preview-2024-12-17",
+              "gpt-4o-mini-realtime-preview",
+              "gpt-4o-mini-realtime-preview-2024-12-17",
+              "gpt-4o-realtime-preview",
+              "gpt-4o-realtime-preview-2024-10-01",
+              "gpt-4o-realtime-preview-2024-12-17",
+              "o1-mini",
+              "o1-mini-2024-09-12",
+              "o1-preview",
+              "o1-preview-2024-09-12",
+              "omni-moderation-2024-09-26",
+              "omni-moderation-latest",
+              "text-embedding-3-large",
+              "text-embedding-3-small",
+              "text-embedding-ada-002",
+              "tts-1",
+              "tts-1-1106",
+              "tts-1-hd",
+              "tts-1-hd-1106",
+              "whisper-1"
+            ],
+            "type": "string"
+          }
+        }
+      }
+    },
+    "data.model.value_not_valid": {
+      "path": [
+        "model"
+      ],
+      "category": "data",
+      "symbol": "value_not_valid",
+      "key": "data.model.value_not_valid",
+      "error": "duck::SupportedValidators::OneOf::ValueNotValidError",
+      "processor_manifest_data": {
+        "one_of": [
+          "babbage-002",
+          "chatgpt-4o-latest",
+          "claude-2.0",
+          "claude-2.1",
+          "claude-3-5-haiku-20241022",
+          "claude-3-5-sonnet-20240620",
+          "claude-3-5-sonnet-20241022",
+          "claude-3-haiku-20240307",
+          "claude-3-opus-20240229",
+          "claude-3-sonnet-20240229",
+          "dall-e-2",
+          "dall-e-3",
+          "davinci-002",
+          "gpt-3.5-turbo",
+          "gpt-3.5-turbo-0125",
+          "gpt-3.5-turbo-1106",
+          "gpt-3.5-turbo-16k",
+          "gpt-3.5-turbo-instruct",
+          "gpt-3.5-turbo-instruct-0914",
+          "gpt-4",
+          "gpt-4-0125-preview",
+          "gpt-4-0613",
+          "gpt-4-1106-preview",
+          "gpt-4-turbo",
+          "gpt-4-turbo-2024-04-09",
+          "gpt-4-turbo-preview",
+          "gpt-4o",
+          "gpt-4o-2024-05-13",
+          "gpt-4o-2024-08-06",
+          "gpt-4o-2024-11-20",
+          "gpt-4o-audio-preview",
+          "gpt-4o-audio-preview-2024-10-01",
+          "gpt-4o-audio-preview-2024-12-17",
+          "gpt-4o-mini",
+          "gpt-4o-mini-2024-07-18",
+          "gpt-4o-mini-audio-preview",
+          "gpt-4o-mini-audio-preview-2024-12-17",
+          "gpt-4o-mini-realtime-preview",
+          "gpt-4o-mini-realtime-preview-2024-12-17",
+          "gpt-4o-realtime-preview",
+          "gpt-4o-realtime-preview-2024-10-01",
+          "gpt-4o-realtime-preview-2024-12-17",
+          "o1-mini",
+          "o1-mini-2024-09-12",
+          "o1-preview",
+          "o1-preview-2024-09-12",
+          "omni-moderation-2024-09-26",
+          "omni-moderation-latest",
+          "text-embedding-3-large",
+          "text-embedding-3-small",
+          "text-embedding-ada-002",
+          "tts-1",
+          "tts-1-1106",
+          "tts-1-hd",
+          "tts-1-hd-1106",
+          "whisper-1"
+        ]
+      }
+    },
+    "data.question.cannot_cast": {
+      "path": [
+        "question"
+      ],
+      "category": "data",
+      "symbol": "cannot_cast",
+      "key": "data.question.cannot_cast",
+      "error": "Foobara::Value::Processor::Casting::CannotCastError",
+      "processor_manifest_data": {
+        "casting": {
+          "cast_to": {
+            "description": "whatever you want to know!",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "data.question.missing_required_attribute": {
+      "path": [
+        "question"
+      ],
+      "category": "data",
+      "symbol": "missing_required_attribute",
+      "key": "data.question.missing_required_attribute",
+      "error": "attributes::SupportedValidators::Required::MissingRequiredAttributeError",
+      "processor_class": "attributes::SupportedValidators::Required",
+      "processor_manifest_data": {
+        "required": [
+          "question"
+        ]
+      }
+    },
+    "data.service.cannot_cast": {
+      "path": [
+        "service"
+      ],
+      "category": "data",
+      "symbol": "cannot_cast",
+      "key": "data.service.cannot_cast",
+      "error": "Foobara::Value::Processor::Casting::CannotCastError",
+      "processor_manifest_data": {
+        "casting": {
+          "cast_to": {
+            "one_of": [
+              "open-ai",
+              "anthropic"
+            ],
+            "type": "string"
+          }
+        }
+      }
+    },
+    "data.service.value_not_valid": {
+      "path": [
+        "service"
+      ],
+      "category": "data",
+      "symbol": "value_not_valid",
+      "key": "data.service.value_not_valid",
+      "error": "duck::SupportedValidators::OneOf::ValueNotValidError",
+      "processor_manifest_data": {
+        "one_of": [
+          "open-ai",
+          "anthropic"
+        ]
+      }
+    },
+    "data.unexpected_attributes": {
+      "category": "data",
+      "symbol": "unexpected_attributes",
+      "key": "data.unexpected_attributes",
+      "error": "attributes::SupportedProcessors::ElementTypeDeclarations::UnexpectedAttributesError",
+      "processor_class": "attributes::SupportedProcessors::ElementTypeDeclarations",
+      "processor_manifest_data": {
+        "element_type_declarations": {
+          "question": {
+            "description": "whatever you want to know!",
+            "type": "string"
+          },
+          "service": {
+            "one_of": [
+              "open-ai",
+              "anthropic"
+            ],
+            "type": "string"
+          },
+          "model": {
+            "type": "Foobara::Ai::AnswerBot::model"
+          }
+        }
+      }
+    }
+  },
+  "depends_on": [
+    "Foobara::Ai::AnthropicApi::CreateMessage",
+    "Foobara::Ai::OpenAiApi::CreateChatCompletion"
+  ],
+  "inputs_type": {
+    "type": "attributes",
+    "element_type_declarations": {
+      "question": {
+        "description": "whatever you want to know!",
+        "type": "string"
+      },
+      "service": {
+        "one_of": [
+          "open-ai",
+          "anthropic"
+        ],
+        "type": "string"
+      },
+      "model": {
+        "type": "Foobara::Ai::AnswerBot::model"
+      }
+    },
+    "required": [
+      "question"
+    ],
+    "defaults": {
+      "model": "gpt-3.5-turbo"
+    }
+  },
+  "description": "Ask a question and receive the knowledge you seek.",
+  "result_type": {
+    "type": "string"
+  },
+  "serializers": [
+    "Foobara::CommandConnectors::Serializers::ErrorsSerializer",
+    "Foobara::CommandConnectors::Serializers::JsonSerializer"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "scoped_path": [
+    "Foobara",
+    "Ai"
+  ],
+  "scoped_name": "Foobara::Ai",
+  "scoped_short_name": "Ai",
+  "scoped_prefix": [
+    "Foobara"
+  ],
+  "scoped_full_path": [
+    "Foobara",
+    "Ai"
+  ],
+  "scoped_full_name": "Foobara::Ai",
+  "scoped_category": "organization",
+  "reference": "Foobara::Ai",
+  "domain": "global_organization::global_domain",
+  "organization": "Foobara::Ai",
+  "domains": [
+    "Foobara::Ai::AnswerBot"
+  ]
+}
