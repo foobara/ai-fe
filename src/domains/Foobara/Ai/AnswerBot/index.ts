@@ -1,7 +1,7 @@
 export * as config from './config'
 
 export const isGlobal = false
-export const organizationName = 'Ai'
+export const organizationName = 'Foobara::Ai'
 export const domainName = 'AnswerBot'
 
 export { Ask } from '../../../Foobara/Ai/AnswerBot/Ask'

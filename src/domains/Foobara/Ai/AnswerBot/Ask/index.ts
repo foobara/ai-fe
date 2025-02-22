@@ -5,7 +5,7 @@ import type Result from './Result'
 import { type Error } from './Errors'
 
 export class Ask extends RemoteCommand<Inputs, Result, Error> {
-  static readonly organizationName = 'Ai'
+  static readonly organizationName = 'Foobara::Ai'
   static readonly domainName = 'AnswerBot'
   static readonly commandName = 'Ask'
 }
