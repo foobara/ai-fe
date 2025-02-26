@@ -36,3 +36,30 @@
     transform: rotate(360deg);
   }
 }
+
+/* Basic styling for model selection */
+.models-container {
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.service-group {
+  margin-bottom: 12px;
+}
+
+.service-group h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  text-transform: capitalize;
+}
+
+.model-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.model-checkbox {
+  margin-right: 8px;
+  margin-bottom: 6px;
+}
