@@ -4,7 +4,13 @@
   "Foobara/Ai/AnswerBot/Ask/Result.ts",
   "Foobara/Ai/AnswerBot/Ask/index.ts",
   "Foobara/Ai/AnswerBot/Ask/manifest.json",
+  "Foobara/Ai/AnswerBot/ListModels/Errors.ts",
+  "Foobara/Ai/AnswerBot/ListModels/Inputs.ts",
+  "Foobara/Ai/AnswerBot/ListModels/Result.ts",
+  "Foobara/Ai/AnswerBot/ListModels/index.ts",
+  "Foobara/Ai/AnswerBot/ListModels/manifest.json",
   "Foobara/Ai/AnswerBot/Types/model.ts",
+  "Foobara/Ai/AnswerBot/Types/service.ts",
   "Foobara/Ai/AnswerBot/config.ts",
   "Foobara/Ai/AnswerBot/index.ts",
   "Foobara/Ai/AnswerBot/manifest.json",
@@ -21,5 +27,7 @@
   "base/processors/attributes/SupportedProcessors/UnexpectedAttributesError.ts",
   "base/processors/attributes/SupportedValidators/MissingRequiredAttributeError.ts",
   "base/processors/duck/SupportedValidators/ValueNotValidError.ts",
+  "base/processors/number/SupportedValidators/BelowMinimumError.ts",
+  "base/processors/number/SupportedValidators/MaxExceededError.ts",
   "manifest.json"
 ]

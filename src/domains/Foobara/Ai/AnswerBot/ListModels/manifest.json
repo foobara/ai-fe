@@ -1,0 +1,449 @@
+{
+  "scoped_path": [
+    "ListModels"
+  ],
+  "scoped_name": "ListModels",
+  "scoped_short_name": "ListModels",
+  "scoped_prefix": null,
+  "scoped_full_path": [
+    "Foobara",
+    "Ai",
+    "AnswerBot",
+    "ListModels"
+  ],
+  "scoped_full_name": "Foobara::Ai::AnswerBot::ListModels",
+  "scoped_category": "command",
+  "reference": "Foobara::Ai::AnswerBot::ListModels",
+  "domain": "Foobara::Ai::AnswerBot",
+  "organization": "Foobara::Ai",
+  "parent": [
+    "domain",
+    "Foobara::Ai::AnswerBot"
+  ],
+  "types_depended_on": [
+    "array",
+    "attributes",
+    "duck",
+    "number",
+    "string",
+    "symbol"
+  ],
+  "result_types_depended_on": [
+    "array",
+    "attributes",
+    "duck",
+    "string",
+    "symbol"
+  ],
+  "errors_types_depended_on": [
+    "array",
+    "attributes",
+    "duck",
+    "number",
+    "symbol"
+  ],
+  "possible_errors": {
+    "foobara::ai::anthropic_api::list_models>data.api_token.cannot_cast": {
+      "path": [
+        "api_token"
+      ],
+      "runtime_path": [
+        "foobara::ai::anthropic_api::list_models"
+      ],
+      "category": "data",
+      "symbol": "cannot_cast",
+      "key": "foobara::ai::anthropic_api::list_models>data.api_token.cannot_cast",
+      "error": "Foobara::Value::Processor::Casting::CannotCastError",
+      "processor_manifest_data": {
+        "casting": {
+          "cast_to": {
+            "allow_nil": true,
+            "type": "string"
+          }
+        }
+      }
+    },
+    "foobara::ai::anthropic_api::list_models>data.cannot_cast": {
+      "runtime_path": [
+        "foobara::ai::anthropic_api::list_models"
+      ],
+      "category": "data",
+      "symbol": "cannot_cast",
+      "key": "foobara::ai::anthropic_api::list_models>data.cannot_cast",
+      "error": "Foobara::Value::Processor::Casting::CannotCastError",
+      "processor_manifest_data": {
+        "casting": {
+          "cast_to": {
+            "type": "attributes",
+            "element_type_declarations": {
+              "page_size": {
+                "max": 2000,
+                "min": 1,
+                "type": "integer"
+              },
+              "api_token": {
+                "allow_nil": true,
+                "type": "string"
+              }
+            },
+            "defaults": {
+              "page_size": 20
+            }
+          }
+        }
+      }
+    },
+    "foobara::ai::anthropic_api::list_models>data.page_size.below_minimum": {
+      "path": [
+        "page_size"
+      ],
+      "runtime_path": [
+        "foobara::ai::anthropic_api::list_models"
+      ],
+      "category": "data",
+      "symbol": "below_minimum",
+      "key": "foobara::ai::anthropic_api::list_models>data.page_size.below_minimum",
+      "error": "number::SupportedValidators::Min::BelowMinimumError",
+      "processor_manifest_data": {
+        "min": 1
+      }
+    },
+    "foobara::ai::anthropic_api::list_models>data.page_size.cannot_cast": {
+      "path": [
+        "page_size"
+      ],
+      "runtime_path": [
+        "foobara::ai::anthropic_api::list_models"
+      ],
+      "category": "data",
+      "symbol": "cannot_cast",
+      "key": "foobara::ai::anthropic_api::list_models>data.page_size.cannot_cast",
+      "error": "Foobara::Value::Processor::Casting::CannotCastError",
+      "processor_manifest_data": {
+        "casting": {
+          "cast_to": {
+            "max": 2000,
+            "min": 1,
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "foobara::ai::anthropic_api::list_models>data.page_size.max_exceeded": {
+      "path": [
+        "page_size"
+      ],
+      "runtime_path": [
+        "foobara::ai::anthropic_api::list_models"
+      ],
+      "category": "data",
+      "symbol": "max_exceeded",
+      "key": "foobara::ai::anthropic_api::list_models>data.page_size.max_exceeded",
+      "error": "number::SupportedValidators::Max::MaxExceededError",
+      "processor_manifest_data": {
+        "max": 2000
+      }
+    },
+    "foobara::ai::anthropic_api::list_models>data.unexpected_attributes": {
+      "runtime_path": [
+        "foobara::ai::anthropic_api::list_models"
+      ],
+      "category": "data",
+      "symbol": "unexpected_attributes",
+      "key": "foobara::ai::anthropic_api::list_models>data.unexpected_attributes",
+      "error": "attributes::SupportedProcessors::ElementTypeDeclarations::UnexpectedAttributesError",
+      "processor_manifest_data": {
+        "element_type_declarations": {
+          "page_size": {
+            "max": 2000,
+            "min": 1,
+            "type": "integer"
+          },
+          "api_token": {
+            "allow_nil": true,
+            "type": "string"
+          }
+        }
+      }
+    },
+    "foobara::ai::anthropic_api::list_models>foobara::ai::anthropic_api::get_page_of_models>data.after_id.cannot_cast": {
+      "path": [
+        "after_id"
+      ],
+      "runtime_path": [
+        "foobara::ai::anthropic_api::list_models",
+        "foobara::ai::anthropic_api::get_page_of_models"
+      ],
+      "category": "data",
+      "symbol": "cannot_cast",
+      "key": "foobara::ai::anthropic_api::list_models>foobara::ai::anthropic_api::get_page_of_models>data.after_id.cannot_cast",
+      "error": "Foobara::Value::Processor::Casting::CannotCastError",
+      "processor_manifest_data": {
+        "casting": {
+          "cast_to": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "foobara::ai::anthropic_api::list_models>foobara::ai::anthropic_api::get_page_of_models>data.anthropic_version.cannot_cast": {
+      "path": [
+        "anthropic_version"
+      ],
+      "runtime_path": [
+        "foobara::ai::anthropic_api::list_models",
+        "foobara::ai::anthropic_api::get_page_of_models"
+      ],
+      "category": "data",
+      "symbol": "cannot_cast",
+      "key": "foobara::ai::anthropic_api::list_models>foobara::ai::anthropic_api::get_page_of_models>data.anthropic_version.cannot_cast",
+      "error": "Foobara::Value::Processor::Casting::CannotCastError",
+      "processor_manifest_data": {
+        "casting": {
+          "cast_to": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "foobara::ai::anthropic_api::list_models>foobara::ai::anthropic_api::get_page_of_models>data.api_token.cannot_cast": {
+      "path": [
+        "api_token"
+      ],
+      "runtime_path": [
+        "foobara::ai::anthropic_api::list_models",
+        "foobara::ai::anthropic_api::get_page_of_models"
+      ],
+      "category": "data",
+      "symbol": "cannot_cast",
+      "key": "foobara::ai::anthropic_api::list_models>foobara::ai::anthropic_api::get_page_of_models>data.api_token.cannot_cast",
+      "error": "Foobara::Value::Processor::Casting::CannotCastError",
+      "processor_manifest_data": {
+        "casting": {
+          "cast_to": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "foobara::ai::anthropic_api::list_models>foobara::ai::anthropic_api::get_page_of_models>data.before_id.cannot_cast": {
+      "path": [
+        "before_id"
+      ],
+      "runtime_path": [
+        "foobara::ai::anthropic_api::list_models",
+        "foobara::ai::anthropic_api::get_page_of_models"
+      ],
+      "category": "data",
+      "symbol": "cannot_cast",
+      "key": "foobara::ai::anthropic_api::list_models>foobara::ai::anthropic_api::get_page_of_models>data.before_id.cannot_cast",
+      "error": "Foobara::Value::Processor::Casting::CannotCastError",
+      "processor_manifest_data": {
+        "casting": {
+          "cast_to": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "foobara::ai::anthropic_api::list_models>foobara::ai::anthropic_api::get_page_of_models>data.cannot_cast": {
+      "runtime_path": [
+        "foobara::ai::anthropic_api::list_models",
+        "foobara::ai::anthropic_api::get_page_of_models"
+      ],
+      "category": "data",
+      "symbol": "cannot_cast",
+      "key": "foobara::ai::anthropic_api::list_models>foobara::ai::anthropic_api::get_page_of_models>data.cannot_cast",
+      "error": "Foobara::Value::Processor::Casting::CannotCastError",
+      "processor_manifest_data": {
+        "casting": {
+          "cast_to": {
+            "type": "attributes",
+            "element_type_declarations": {
+              "api_token": {
+                "type": "string"
+              },
+              "anthropic_version": {
+                "type": "string"
+              },
+              "before_id": {
+                "type": "string"
+              },
+              "after_id": {
+                "type": "string"
+              },
+              "limit": {
+                "max": 2000,
+                "min": 1,
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "foobara::ai::anthropic_api::list_models>foobara::ai::anthropic_api::get_page_of_models>data.limit.below_minimum": {
+      "path": [
+        "limit"
+      ],
+      "runtime_path": [
+        "foobara::ai::anthropic_api::list_models",
+        "foobara::ai::anthropic_api::get_page_of_models"
+      ],
+      "category": "data",
+      "symbol": "below_minimum",
+      "key": "foobara::ai::anthropic_api::list_models>foobara::ai::anthropic_api::get_page_of_models>data.limit.below_minimum",
+      "error": "number::SupportedValidators::Min::BelowMinimumError",
+      "processor_manifest_data": {
+        "min": 1
+      }
+    },
+    "foobara::ai::anthropic_api::list_models>foobara::ai::anthropic_api::get_page_of_models>data.limit.cannot_cast": {
+      "path": [
+        "limit"
+      ],
+      "runtime_path": [
+        "foobara::ai::anthropic_api::list_models",
+        "foobara::ai::anthropic_api::get_page_of_models"
+      ],
+      "category": "data",
+      "symbol": "cannot_cast",
+      "key": "foobara::ai::anthropic_api::list_models>foobara::ai::anthropic_api::get_page_of_models>data.limit.cannot_cast",
+      "error": "Foobara::Value::Processor::Casting::CannotCastError",
+      "processor_manifest_data": {
+        "casting": {
+          "cast_to": {
+            "max": 2000,
+            "min": 1,
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "foobara::ai::anthropic_api::list_models>foobara::ai::anthropic_api::get_page_of_models>data.limit.max_exceeded": {
+      "path": [
+        "limit"
+      ],
+      "runtime_path": [
+        "foobara::ai::anthropic_api::list_models",
+        "foobara::ai::anthropic_api::get_page_of_models"
+      ],
+      "category": "data",
+      "symbol": "max_exceeded",
+      "key": "foobara::ai::anthropic_api::list_models>foobara::ai::anthropic_api::get_page_of_models>data.limit.max_exceeded",
+      "error": "number::SupportedValidators::Max::MaxExceededError",
+      "processor_manifest_data": {
+        "max": 2000
+      }
+    },
+    "foobara::ai::anthropic_api::list_models>foobara::ai::anthropic_api::get_page_of_models>data.unexpected_attributes": {
+      "runtime_path": [
+        "foobara::ai::anthropic_api::list_models",
+        "foobara::ai::anthropic_api::get_page_of_models"
+      ],
+      "category": "data",
+      "symbol": "unexpected_attributes",
+      "key": "foobara::ai::anthropic_api::list_models>foobara::ai::anthropic_api::get_page_of_models>data.unexpected_attributes",
+      "error": "attributes::SupportedProcessors::ElementTypeDeclarations::UnexpectedAttributesError",
+      "processor_manifest_data": {
+        "element_type_declarations": {
+          "api_token": {
+            "type": "string"
+          },
+          "anthropic_version": {
+            "type": "string"
+          },
+          "before_id": {
+            "type": "string"
+          },
+          "after_id": {
+            "type": "string"
+          },
+          "limit": {
+            "max": 2000,
+            "min": 1,
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "foobara::ai::open_ai_api::list_models>data.api_token.cannot_cast": {
+      "path": [
+        "api_token"
+      ],
+      "runtime_path": [
+        "foobara::ai::open_ai_api::list_models"
+      ],
+      "category": "data",
+      "symbol": "cannot_cast",
+      "key": "foobara::ai::open_ai_api::list_models>data.api_token.cannot_cast",
+      "error": "Foobara::Value::Processor::Casting::CannotCastError",
+      "processor_manifest_data": {
+        "casting": {
+          "cast_to": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "foobara::ai::open_ai_api::list_models>data.cannot_cast": {
+      "runtime_path": [
+        "foobara::ai::open_ai_api::list_models"
+      ],
+      "category": "data",
+      "symbol": "cannot_cast",
+      "key": "foobara::ai::open_ai_api::list_models>data.cannot_cast",
+      "error": "Foobara::Value::Processor::Casting::CannotCastError",
+      "processor_manifest_data": {
+        "casting": {
+          "cast_to": {
+            "type": "attributes",
+            "element_type_declarations": {
+              "api_token": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "foobara::ai::open_ai_api::list_models>data.unexpected_attributes": {
+      "runtime_path": [
+        "foobara::ai::open_ai_api::list_models"
+      ],
+      "category": "data",
+      "symbol": "unexpected_attributes",
+      "key": "foobara::ai::open_ai_api::list_models>data.unexpected_attributes",
+      "error": "attributes::SupportedProcessors::ElementTypeDeclarations::UnexpectedAttributesError",
+      "processor_manifest_data": {
+        "element_type_declarations": {
+          "api_token": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "depends_on": [
+    "Foobara::Ai::AnthropicApi::ListModels",
+    "Foobara::Ai::OllamaApi::ListLocalModels",
+    "Foobara::Ai::OpenAiApi::ListModels"
+  ],
+  "inputs_type": {
+    "type": "::attributes",
+    "element_type_declarations": {},
+    "required": []
+  },
+  "description": "List of all model strings you can use",
+  "result_type": {
+    "type": "array",
+    "element_type_declaration": {
+      "type": "duck",
+      "instance_of": "Foobara::Model"
+    }
+  },
+  "serializers": [
+    "Foobara::CommandConnectors::Serializers::ErrorsSerializer",
+    "Foobara::CommandConnectors::Serializers::JsonSerializer"
+  ]
+}

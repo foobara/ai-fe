@@ -20,13 +20,16 @@
     "Foobara::Ai"
   ],
   "commands": [
-    "Foobara::Ai::AnswerBot::Ask"
+    "Foobara::Ai::AnswerBot::Ask",
+    "Foobara::Ai::AnswerBot::ListModels"
   ],
   "types": [
-    "Foobara::Ai::AnswerBot::model"
+    "Foobara::Ai::AnswerBot::model",
+    "Foobara::Ai::AnswerBot::service"
   ],
   "depends_on": [
     "Foobara::Ai::AnthropicApi",
+    "Foobara::Ai::OllamaApi",
     "Foobara::Ai::OpenAiApi"
   ]
 }

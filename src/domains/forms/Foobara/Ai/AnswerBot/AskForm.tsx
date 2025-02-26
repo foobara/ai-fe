@@ -77,12 +77,12 @@ export default function AskForm (): JSX.Element {
           placeholder="question"
                   />
 
-        {/*<select*/}
-        {/*  value={service ?? ''}*/}
-        {/*  onChange={(e) => { setService(e.target.value as 'open-ai' | 'anthropic') }}*/}
-        {/*        >*/}
-        {/*  <option value="open-ai">open-ai</option><option value="anthropic">anthropic</option>*/}
-        {/*</select>*/}
+        {/* <select */}
+        {/*  value={service ?? ''} */}
+        {/*  onChange={(e) => { setService(e.target.value as 'open-ai' | 'anthropic') }} */}
+        {/*        > */}
+        {/*  <option value="open-ai">open-ai</option><option value="anthropic">anthropic</option> */}
+        {/* </select> */}
 
         <select
           value={model ?? ''}
