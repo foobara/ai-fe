@@ -21,18 +21,18 @@
     "Foobara::Ai::AnswerBot"
   ],
   "types_depended_on": [
+    "Foobara::Ai::AnswerBot::Types::Model",
     "array",
     "attributes",
     "duck",
     "number",
-    "string",
     "symbol"
   ],
   "result_types_depended_on": [
+    "Foobara::Ai::AnswerBot::Types::Model",
     "array",
     "attributes",
     "duck",
-    "string",
     "symbol"
   ],
   "errors_types_depended_on": [
@@ -438,8 +438,7 @@
   "result_type": {
     "type": "array",
     "element_type_declaration": {
-      "type": "duck",
-      "instance_of": "Foobara::Model"
+      "type": "Foobara::Ai::AnswerBot::Types::Model"
     }
   },
   "serializers": [

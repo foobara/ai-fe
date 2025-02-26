@@ -24,6 +24,7 @@
     "Foobara::Ai::AnswerBot::ListModels"
   ],
   "types": [
+    "Foobara::Ai::AnswerBot::Types::Model",
     "Foobara::Ai::AnswerBot::model",
     "Foobara::Ai::AnswerBot::service"
   ],
