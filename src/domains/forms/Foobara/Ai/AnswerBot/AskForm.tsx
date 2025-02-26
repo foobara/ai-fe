@@ -9,15 +9,9 @@ import { type Error as AskError } from '../../../../Foobara/Ai/AnswerBot/Ask/Err
 
 import { type model } from '../../../../Foobara/Ai/AnswerBot/Types/model'
 
-import { type service } from '../../../../Foobara/Ai/AnswerBot/Types/service'
-
 export default function AskForm (): JSX.Element {
   const [question, setQuestion] = useState<string | undefined>(undefined)
-
-  const [service, setService] = useState<service | undefined>(undefined)
-
   const [model, setModel] = useState<model | undefined>(undefined)
-
   const [result, setResult] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
 
@@ -33,11 +27,6 @@ export default function AskForm (): JSX.Element {
       return
     }
 
-    if (service == null) {
-      // TODO: perform some kind of validation error
-      return
-    }
-
     if (model == null) {
       // TODO: perform some kind of validation error
       return
@@ -45,7 +34,6 @@ export default function AskForm (): JSX.Element {
 
     const inputs: AskInputs = {
       question,
-      service,
       model
     }
 
@@ -78,13 +66,6 @@ export default function AskForm (): JSX.Element {
           onChange={(e) => { setQuestion(e.target.value) }}
           placeholder="question"
                   />
-
-        <select
-          value={service ?? ''}
-          onChange={(e) => { setService(e.target.value as service) }}
-                >
-          <option value="anthropic">anthropic</option><option value="ollama">ollama</option><option value="open-ai">open-ai</option>
-        </select>
 
         <select
           value={model ?? ''}
