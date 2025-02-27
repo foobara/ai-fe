@@ -1,4 +1,6 @@
 import React, { useState, useEffect, type JSX } from 'react'
+// Note: You'll need to run "npm install react-markdown" to install this dependency
+import ReactMarkdown from 'react-markdown'
 
 import { type Outcome } from '../../../..//base/Outcome'
 
@@ -183,7 +185,7 @@ export default function AskForm (): JSX.Element {
     <div className="CommandForm">
       <div>
         {!loadingModels && (
-          <>
+          <div className="question-container">
             <input
               type="text"
               value={question ?? ''}
@@ -196,7 +198,7 @@ export default function AskForm (): JSX.Element {
             >
               Ask Selected Models ({selectedModels.length})
             </button>
-          </>
+          </div>
         )}
 
         {hasAsked && (
@@ -206,7 +208,11 @@ export default function AskForm (): JSX.Element {
                 <h4>{result.modelId}</h4>
                 {result.loading && <p>Thinking...</p>}
                 {result.error && <p className="error-message">{result.error}</p>}
-                {result.result && !result.loading && <p>{result.result}</p>}
+                {result.result && !result.loading && (
+                  <div className="markdown-result">
+                    <ReactMarkdown>{result.result}</ReactMarkdown>
+                  </div>
+                )}
               </div>
             ))}
           </div>

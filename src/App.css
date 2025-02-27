@@ -37,6 +37,36 @@
   }
 }
 
+/* Command Form */
+.CommandForm {
+  text-align: left;
+}
+
+.CommandForm .question-container {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.CommandForm input[type="text"] {
+  width: 70%;
+  padding: 8px;
+  margin-right: 10px;
+}
+
+.CommandForm button {
+  padding: 8px 15px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.CommandForm button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
 /* Basic styling for model selection */
 .models-container {
   margin: 10px 0;
@@ -90,4 +120,56 @@
 
 .error-message {
   color: #cc0000;
+}
+
+/* Markdown styling */
+.markdown-result {
+  overflow: auto;
+  text-align: left;
+}
+
+.markdown-result pre {
+  background-color: #323232;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+.markdown-result code {
+  font-family: monospace;
+  background-color: #323232;
+  color: #ffffff;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+.markdown-result table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 15px 0;
+}
+
+.markdown-result th,
+.markdown-result td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.markdown-result th {
+  background-color: #323232;
+  color: #ffffff;
+}
+
+.markdown-result img {
+  max-width: 100%;
+  height: auto;
+}
+
+.markdown-result blockquote {
+  border-left: 4px solid #ddd;
+  margin-left: 0;
+  padding-left: 15px;
+  color: #777;
 }
