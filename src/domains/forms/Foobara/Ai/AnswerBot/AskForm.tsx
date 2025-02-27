@@ -20,9 +20,7 @@ interface ModelData {
   service: service
 }
 
-interface ModelsByService {
-  [service: string]: ModelData[]
-}
+type ModelsByService = Record<string, ModelData[]>
 
 interface ModelResult {
   modelId: model
@@ -178,6 +176,12 @@ export default function AskForm (): JSX.Element {
     })
   }
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
+    if (e.key === 'Enter' && question && selectedModels.length > 0) {
+      runAll()
+    }
+  }
+
   // Check if any model result is being processed or has been processed
   const hasAsked = modelResults.some(result => result.loading || result.result || result.error)
 
@@ -190,6 +194,7 @@ export default function AskForm (): JSX.Element {
               type="text"
               value={question ?? ''}
               onChange={(e) => { setQuestion(e.target.value) }}
+              onKeyDown={handleKeyDown}
               placeholder="Enter your question here"
             />
             <button
@@ -219,28 +224,30 @@ export default function AskForm (): JSX.Element {
         )}
 
         <div className="models-container">
-          {loadingModels ? (
-            <p>Loading models...</p>
-          ) : (
-            Object.entries(modelsByService).map(([service, models]) => (
-              <div key={service} className="service-group">
-                <h3>{service}</h3>
-                <div className="model-checkboxes">
-                  {models.map((model) => (
-                    <div key={model.id} className="model-checkbox">
-                      <input
-                        type="checkbox"
-                        id={model.id}
-                        checked={selectedModels.includes(model.id)}
-                        onChange={() => handleModelToggle(model.id)}
+          {loadingModels
+            ? (
+              <p>Loading models...</p>
+              )
+            : (
+                Object.entries(modelsByService).map(([service, models]) => (
+                  <div key={service} className="service-group">
+                    <h3>{service}</h3>
+                    <div className="model-checkboxes">
+                      {models.map((model) => (
+                        <div key={model.id} className="model-checkbox">
+                          <input
+                            type="checkbox"
+                            id={model.id}
+                            checked={selectedModels.includes(model.id)}
+                            onChange={() => { handleModelToggle(model.id) }}
                       />
-                      <label htmlFor={model.id}>{model.id}</label>
+                          <label htmlFor={model.id}>{model.id}</label>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </div>
-            ))
-          )}
+                  </div>
+                ))
+              )}
         </div>
       </div>
 
