@@ -176,23 +176,30 @@ export default function AskForm (): JSX.Element {
     })
   }
 
+  // Check if any model result is being processed or has been processed
+  const hasAsked = modelResults.some(result => result.loading || result.result || result.error)
+
   return (
     <div className="CommandForm">
       <div>
-        <input
-          type="text"
-          value={question ?? ''}
-          onChange={(e) => { setQuestion(e.target.value) }}
-          placeholder="Enter your question here"
-        />
-        <button
-          onClick={runAll}
-          disabled={selectedModels.length === 0 || !question}
-        >
-          Ask Selected Models ({selectedModels.length})
-        </button>
+        {!loadingModels && (
+          <>
+            <input
+              type="text"
+              value={question ?? ''}
+              onChange={(e) => { setQuestion(e.target.value) }}
+              placeholder="Enter your question here"
+            />
+            <button
+              onClick={runAll}
+              disabled={selectedModels.length === 0 || !question}
+            >
+              Ask Selected Models ({selectedModels.length})
+            </button>
+          </>
+        )}
 
-        {modelResults.length > 0 && (
+        {hasAsked && (
           <div className="results-container">
             {modelResults.map(result => (
               <div key={result.modelId} className="model-result">
