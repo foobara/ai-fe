@@ -22,10 +22,17 @@ interface ModelsByService {
   [service: string]: ModelData[]
 }
 
+interface ModelResult {
+  modelId: model
+  result: string | null
+  error: string | null
+  loading: boolean
+}
+
 export default function AskForm (): JSX.Element {
   const [question, setQuestion] = useState<string | undefined>(undefined)
-  const [selectedModel, setSelectedModel] = useState<model | undefined>(undefined)
-  const [result, setResult] = useState<string | null>(null)
+  const [selectedModels, setSelectedModels] = useState<model[]>([])
+  const [modelResults, setModelResults] = useState<ModelResult[]>([])
   const [error, setError] = useState<string | null>(null)
   const [loadingModels, setLoadingModels] = useState<boolean>(false)
   const [modelsByService, setModelsByService] = useState<ModelsByService>({})
@@ -65,50 +72,108 @@ export default function AskForm (): JSX.Element {
     void fetchModels()
   }, [])
 
+  // Update modelResults when selectedModels changes
+  useEffect(() => {
+    // Remove results for unselected models
+    setModelResults(prev => prev.filter(result => selectedModels.includes(result.modelId)))
+
+    // Add entries for newly selected models
+    const newModelResults = selectedModels
+      .filter(modelId => !modelResults.some(result => result.modelId === modelId))
+      .map(modelId => ({
+        modelId,
+        result: null,
+        error: null,
+        loading: false
+      }))
+
+    if (newModelResults.length > 0) {
+      setModelResults(prev => [...prev, ...newModelResults])
+    }
+  }, [selectedModels])
+
   function toVoid (fn: () => Promise<void>): () => void {
     return (): void => {
       void (async (): Promise<void> => { await fn() })()
     }
   }
 
-  const run = toVoid(async (): Promise<void> => {
+  const askWithModel = async (modelId: model): Promise<void> => {
     if (question == null) {
-      // TODO: perform some kind of validation error
       return
     }
 
-    if (selectedModel == null) {
-      // TODO: perform some kind of validation error
-      return
-    }
+    // Update this model's status to loading
+    setModelResults(prev =>
+      prev.map(result =>
+        result.modelId === modelId
+          ? { ...result, loading: true, result: 'Thinking...', error: null }
+          : result
+      )
+    )
 
     const inputs: AskInputs = {
       question,
-      model: selectedModel
+      model: modelId
     }
 
     const command = new Ask(inputs)
 
     try {
-      setResult('Thinking...')
-      setError(null)
       const outcome: Outcome<AskResult, AskError> = await command.run()
 
       if (outcome.isSuccess()) {
-        const result: AskResult = outcome.result
-        setResult(typeof result === 'string' ? result : JSON.stringify(result))
+        const resultData: AskResult = outcome.result
+        const resultText = typeof resultData === 'string' ? resultData : JSON.stringify(resultData)
+
+        setModelResults(prev =>
+          prev.map(result =>
+            result.modelId === modelId
+              ? { ...result, loading: false, result: resultText, error: null }
+              : result
+          )
+        )
       } else {
-        setError(outcome.errorMessage)
-        setResult(null)
+        setModelResults(prev =>
+          prev.map(result =>
+            result.modelId === modelId
+              ? { ...result, loading: false, result: null, error: outcome.errorMessage }
+              : result
+          )
+        )
       }
     } catch (error) {
-      setError('Error executing command')
-      setResult(null)
+      setModelResults(prev =>
+        prev.map(result =>
+          result.modelId === modelId
+            ? { ...result, loading: false, result: null, error: 'Error executing command' }
+            : result
+        )
+      )
     }
+  }
+
+  const runAll = toVoid(async (): Promise<void> => {
+    if (question == null || selectedModels.length === 0) {
+      return
+    }
+
+    setError(null)
+
+    // Launch all model queries in parallel
+    selectedModels.forEach(modelId => {
+      void askWithModel(modelId)
+    })
   })
 
-  const handleModelSelect = (modelId: model): void => {
-    setSelectedModel(modelId === selectedModel ? undefined : modelId)
+  const handleModelToggle = (modelId: model): void => {
+    setSelectedModels(prev => {
+      if (prev.includes(modelId)) {
+        return prev.filter(id => id !== modelId)
+      } else {
+        return [...prev, modelId]
+      }
+    })
   }
 
   return (
@@ -120,7 +185,25 @@ export default function AskForm (): JSX.Element {
           onChange={(e) => { setQuestion(e.target.value) }}
           placeholder="Enter your question here"
         />
-        <button onClick={run} disabled={!selectedModel || !question}>Ask</button>
+        <button
+          onClick={runAll}
+          disabled={selectedModels.length === 0 || !question}
+        >
+          Ask Selected Models ({selectedModels.length})
+        </button>
+
+        {modelResults.length > 0 && (
+          <div className="results-container">
+            {modelResults.map(result => (
+              <div key={result.modelId} className="model-result">
+                <h4>{result.modelId}</h4>
+                {result.loading && <p>Thinking...</p>}
+                {result.error && <p className="error-message">{result.error}</p>}
+                {result.result && !result.loading && <p>{result.result}</p>}
+              </div>
+            ))}
+          </div>
+        )}
 
         <div className="models-container">
           {loadingModels ? (
@@ -135,8 +218,8 @@ export default function AskForm (): JSX.Element {
                       <input
                         type="checkbox"
                         id={model.id}
-                        checked={selectedModel === model.id}
-                        onChange={() => handleModelSelect(model.id)}
+                        checked={selectedModels.includes(model.id)}
+                        onChange={() => handleModelToggle(model.id)}
                       />
                       <label htmlFor={model.id}>{model.id}</label>
                     </div>
@@ -146,11 +229,10 @@ export default function AskForm (): JSX.Element {
             ))
           )}
         </div>
-
       </div>
 
-      {(result != null) && <p>{result}</p>}
-      {(error != null) && <p className="error-message">{error}</p>}
+      {error && <p className="error-message">{error}</p>}
+
     </div>
   )
 }
