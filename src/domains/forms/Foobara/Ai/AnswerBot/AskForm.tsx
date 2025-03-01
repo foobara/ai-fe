@@ -1,5 +1,5 @@
 import React, { useState, useEffect, type JSX } from 'react'
-// Note: You'll need to run "npm install react-markdown" to install this dependency
+
 import ReactMarkdown from 'react-markdown'
 
 import { type Outcome } from '../../../..//base/Outcome'
@@ -14,13 +14,9 @@ import { type Error as ListModelsError } from '../../../../Foobara/Ai/AnswerBot/
 
 import { type model } from '../../../../Foobara/Ai/AnswerBot/Types/model'
 import { type service } from '../../../../Foobara/Ai/AnswerBot/Types/service'
+import { type Model } from '../../../../Foobara/Ai/AnswerBot/Types/Model'
 
-interface ModelData {
-  id: model
-  service: service
-}
-
-type ModelsByService = Record<string, ModelData[]>
+type ModelsByService = Record<service, Model[]>
 
 interface ModelResult {
   modelId: model
