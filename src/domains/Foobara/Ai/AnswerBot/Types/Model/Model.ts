@@ -1,4 +1,4 @@
-import { Model } from '../../../../../base/Model'
+import { Model as ModelBase } from '../../../../../base/Model'
 
 import { type model } from '../../../../../Foobara/Ai/AnswerBot/Types/model'
 
@@ -11,7 +11,7 @@ export interface ModelAttributesType {
 
 export class Model<
   AttributesType extends ModelAttributesType = ModelAttributesType
-> extends Model<AttributesType> {
+> extends ModelBase<AttributesType> {
   static readonly modelName: string = 'Model'
 
   get id (): AttributesType['id'] {
