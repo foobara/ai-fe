@@ -12,14 +12,14 @@ import { ListModels } from '../../../../Foobara/Ai/AnswerBot/ListModels'
 import type ListModelsResult from '../../../../Foobara/Ai/AnswerBot/ListModels/Result'
 import { type Error as ListModelsError } from '../../../../Foobara/Ai/AnswerBot/ListModels/Errors'
 
-import { type model } from '../../../../Foobara/Ai/AnswerBot/Types/model'
-import { type service } from '../../../../Foobara/Ai/AnswerBot/Types/service'
+import { type model_enum } from '../../../../Foobara/Ai/AnswerBot/Types/model_enum'
+import { type service_enum } from '../../../../Foobara/Ai/AnswerBot/Types/service_enum'
 import { type Model } from '../../../../Foobara/Ai/AnswerBot/Types/Model'
 
-type ModelsByService = Record<service, Model[]>
+type ModelsByService = Record<service_enum, Model[]>
 
 interface ModelResult {
-  modelId: model
+  modelId: model_enum
   result: string | null
   error: string | null
   loading: boolean
@@ -27,7 +27,7 @@ interface ModelResult {
 
 export default function AskForm (): JSX.Element {
   const [question, setQuestion] = useState<string | undefined>(undefined)
-  const [selectedModels, setSelectedModels] = useState<model[]>([])
+  const [selectedModels, setSelectedModels] = useState<model_enum[]>([])
   const [modelResults, setModelResults] = useState<ModelResult[]>([])
   const [error, setError] = useState<string | null>(null)
   const [loadingModels, setLoadingModels] = useState<boolean>(false)
@@ -94,7 +94,7 @@ export default function AskForm (): JSX.Element {
     }
   }
 
-  const askWithModel = async (modelId: model): Promise<void> => {
+  const askWithModel = async (modelId: model_enum): Promise<void> => {
     if (question == null) {
       return
     }
@@ -162,7 +162,7 @@ export default function AskForm (): JSX.Element {
     })
   })
 
-  const handleModelToggle = (modelId: model): void => {
+  const handleModelToggle = (modelId: model_enum): void => {
     setSelectedModels(prev => {
       if (prev.includes(modelId)) {
         return prev.filter(id => id !== modelId)
