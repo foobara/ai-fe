@@ -1,9 +1,9 @@
-import { type model } from '../../../../Foobara/Ai/AnswerBot/Types/model'
+import { type model_enum } from '../../../../Foobara/Ai/AnswerBot/Types/model_enum'
 
-import { type service } from '../../../../Foobara/Ai/AnswerBot/Types/service'
+import { type service_enum } from '../../../../Foobara/Ai/AnswerBot/Types/service_enum'
 
 export default interface Inputs {
   question: string
-  service?: service
-  model?: model
+  service?: service_enum
+  model?: model_enum
 }

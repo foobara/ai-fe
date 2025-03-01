@@ -25,8 +25,8 @@
   ],
   "types": [
     "Foobara::Ai::AnswerBot::Types::Model",
-    "Foobara::Ai::AnswerBot::model",
-    "Foobara::Ai::AnswerBot::service"
+    "Foobara::Ai::AnswerBot::model_enum",
+    "Foobara::Ai::AnswerBot::service_enum"
   ],
   "depends_on": [
     "Foobara::Ai::AnthropicApi",

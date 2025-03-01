@@ -1,17 +1,17 @@
-import { Model as ModelBase } from '../../../../../base/Model'
+import { Model } from '../../../../../base/Model'
 
-import { type model } from '../../../../../Foobara/Ai/AnswerBot/Types/model'
+import { type model_enum } from '../../../../../Foobara/Ai/AnswerBot/Types/model_enum'
 
-import { type service } from '../../../../../Foobara/Ai/AnswerBot/Types/service'
+import { type service_enum } from '../../../../../Foobara/Ai/AnswerBot/Types/service_enum'
 
 export interface ModelAttributesType {
-  id: model
-  service: service
+  id: model_enum
+  service: service_enum
 }
 
 export class Model<
   AttributesType extends ModelAttributesType = ModelAttributesType
-> extends ModelBase<AttributesType> {
+> extends Model<AttributesType> {
   static readonly modelName: string = 'Model'
 
   get id (): AttributesType['id'] {

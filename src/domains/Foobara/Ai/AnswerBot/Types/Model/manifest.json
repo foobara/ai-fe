@@ -34,10 +34,10 @@
       "type": "attributes",
       "element_type_declarations": {
         "id": {
-          "type": "Foobara::Ai::AnswerBot::model"
+          "type": "Foobara::Ai::AnswerBot::model_enum"
         },
         "service": {
-          "type": "Foobara::Ai::AnswerBot::service"
+          "type": "Foobara::Ai::AnswerBot::service_enum"
         }
       },
       "required": [
@@ -59,10 +59,10 @@
             "type": "attributes",
             "element_type_declarations": {
               "id": {
-                "type": "Foobara::Ai::AnswerBot::model"
+                "type": "Foobara::Ai::AnswerBot::model_enum"
               },
               "service": {
-                "type": "Foobara::Ai::AnswerBot::service"
+                "type": "Foobara::Ai::AnswerBot::service_enum"
               }
             },
             "required": [
@@ -132,6 +132,8 @@
               "gpt-4-turbo",
               "gpt-4-turbo-2024-04-09",
               "gpt-4-turbo-preview",
+              "gpt-4.5-preview",
+              "gpt-4.5-preview-2025-02-27",
               "gpt-4o",
               "gpt-4o-2024-05-13",
               "gpt-4o-2024-08-06",
@@ -263,6 +265,8 @@
           "gpt-4-turbo",
           "gpt-4-turbo-2024-04-09",
           "gpt-4-turbo-preview",
+          "gpt-4.5-preview",
+          "gpt-4.5-preview-2025-02-27",
           "gpt-4o",
           "gpt-4o-2024-05-13",
           "gpt-4o-2024-08-06",
@@ -390,10 +394,10 @@
       "processor_manifest_data": {
         "element_type_declarations": {
           "id": {
-            "type": "Foobara::Ai::AnswerBot::model"
+            "type": "Foobara::Ai::AnswerBot::model_enum"
           },
           "service": {
-            "type": "Foobara::Ai::AnswerBot::service"
+            "type": "Foobara::Ai::AnswerBot::service_enum"
           }
         }
       }
@@ -404,8 +408,8 @@
     "Foobara::Ai::AnswerBot::Types::Model"
   ],
   "types_depended_on": [
-    "Foobara::Ai::AnswerBot::model",
-    "Foobara::Ai::AnswerBot::service",
+    "Foobara::Ai::AnswerBot::model_enum",
+    "Foobara::Ai::AnswerBot::service_enum",
     "array",
     "attributes",
     "duck",
@@ -436,10 +440,10 @@
     "type": "attributes",
     "element_type_declarations": {
       "id": {
-        "type": "Foobara::Ai::AnswerBot::model"
+        "type": "Foobara::Ai::AnswerBot::model_enum"
       },
       "service": {
-        "type": "Foobara::Ai::AnswerBot::service"
+        "type": "Foobara::Ai::AnswerBot::service_enum"
       }
     },
     "required": [

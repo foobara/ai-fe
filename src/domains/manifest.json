@@ -23,8 +23,8 @@
         "Foobara::Ai::AnswerBot"
       ],
       "types_depended_on": [
-        "Foobara::Ai::AnswerBot::model",
-        "Foobara::Ai::AnswerBot::service",
+        "Foobara::Ai::AnswerBot::model_enum",
+        "Foobara::Ai::AnswerBot::service_enum",
         "array",
         "attributes",
         "duck",
@@ -32,8 +32,8 @@
         "symbol"
       ],
       "inputs_types_depended_on": [
-        "Foobara::Ai::AnswerBot::model",
-        "Foobara::Ai::AnswerBot::service",
+        "Foobara::Ai::AnswerBot::model_enum",
+        "Foobara::Ai::AnswerBot::service_enum",
         "array",
         "attributes",
         "duck",
@@ -67,11 +67,11 @@
                   },
                   "service": {
                     "description": "If two services expose the same model, you can specify which one to use.",
-                    "type": "Foobara::Ai::AnswerBot::service"
+                    "type": "Foobara::Ai::AnswerBot::service_enum"
                   },
                   "model": {
                     "description": "The model to use.",
-                    "type": "Foobara::Ai::AnswerBot::model"
+                    "type": "Foobara::Ai::AnswerBot::model_enum"
                   }
                 },
                 "required": [
@@ -106,7 +106,7 @@
             "casting": {
               "cast_to": {
                 "description": "The model to use.",
-                "type": "Foobara::Ai::AnswerBot::model"
+                "type": "Foobara::Ai::AnswerBot::model_enum"
               }
             }
           }
@@ -168,6 +168,8 @@
               "gpt-4-turbo",
               "gpt-4-turbo-2024-04-09",
               "gpt-4-turbo-preview",
+              "gpt-4.5-preview",
+              "gpt-4.5-preview-2025-02-27",
               "gpt-4o",
               "gpt-4o-2024-05-13",
               "gpt-4o-2024-08-06",
@@ -267,7 +269,7 @@
             "casting": {
               "cast_to": {
                 "description": "If two services expose the same model, you can specify which one to use.",
-                "type": "Foobara::Ai::AnswerBot::service"
+                "type": "Foobara::Ai::AnswerBot::service_enum"
               }
             }
           }
@@ -302,11 +304,11 @@
               },
               "service": {
                 "description": "If two services expose the same model, you can specify which one to use.",
-                "type": "Foobara::Ai::AnswerBot::service"
+                "type": "Foobara::Ai::AnswerBot::service_enum"
               },
               "model": {
                 "description": "The model to use.",
-                "type": "Foobara::Ai::AnswerBot::model"
+                "type": "Foobara::Ai::AnswerBot::model_enum"
               }
             }
           }
@@ -326,11 +328,11 @@
           },
           "service": {
             "description": "If two services expose the same model, you can specify which one to use.",
-            "type": "Foobara::Ai::AnswerBot::service"
+            "type": "Foobara::Ai::AnswerBot::service_enum"
           },
           "model": {
             "description": "The model to use.",
-            "type": "Foobara::Ai::AnswerBot::model"
+            "type": "Foobara::Ai::AnswerBot::model_enum"
           }
         },
         "required": [
@@ -408,8 +410,8 @@
           "processor_manifest_data": {
             "casting": {
               "cast_to": {
-                "allow_nil": true,
-                "type": "string"
+                "type": "string",
+                "allow_nil": true
               }
             }
           }
@@ -826,8 +828,8 @@
       ],
       "types": [
         "Foobara::Ai::AnswerBot::Types::Model",
-        "Foobara::Ai::AnswerBot::model",
-        "Foobara::Ai::AnswerBot::service"
+        "Foobara::Ai::AnswerBot::model_enum",
+        "Foobara::Ai::AnswerBot::service_enum"
       ],
       "depends_on": [
         "Foobara::Ai::AnthropicApi",
@@ -2541,10 +2543,10 @@
           "type": "attributes",
           "element_type_declarations": {
             "id": {
-              "type": "Foobara::Ai::AnswerBot::model"
+              "type": "Foobara::Ai::AnswerBot::model_enum"
             },
             "service": {
-              "type": "Foobara::Ai::AnswerBot::service"
+              "type": "Foobara::Ai::AnswerBot::service_enum"
             }
           },
           "required": [
@@ -2566,10 +2568,10 @@
                 "type": "attributes",
                 "element_type_declarations": {
                   "id": {
-                    "type": "Foobara::Ai::AnswerBot::model"
+                    "type": "Foobara::Ai::AnswerBot::model_enum"
                   },
                   "service": {
-                    "type": "Foobara::Ai::AnswerBot::service"
+                    "type": "Foobara::Ai::AnswerBot::service_enum"
                   }
                 },
                 "required": [
@@ -2639,6 +2641,8 @@
                   "gpt-4-turbo",
                   "gpt-4-turbo-2024-04-09",
                   "gpt-4-turbo-preview",
+                  "gpt-4.5-preview",
+                  "gpt-4.5-preview-2025-02-27",
                   "gpt-4o",
                   "gpt-4o-2024-05-13",
                   "gpt-4o-2024-08-06",
@@ -2770,6 +2774,8 @@
               "gpt-4-turbo",
               "gpt-4-turbo-2024-04-09",
               "gpt-4-turbo-preview",
+              "gpt-4.5-preview",
+              "gpt-4.5-preview-2025-02-27",
               "gpt-4o",
               "gpt-4o-2024-05-13",
               "gpt-4o-2024-08-06",
@@ -2897,10 +2903,10 @@
           "processor_manifest_data": {
             "element_type_declarations": {
               "id": {
-                "type": "Foobara::Ai::AnswerBot::model"
+                "type": "Foobara::Ai::AnswerBot::model_enum"
               },
               "service": {
-                "type": "Foobara::Ai::AnswerBot::service"
+                "type": "Foobara::Ai::AnswerBot::service_enum"
               }
             }
           }
@@ -2911,8 +2917,8 @@
         "Foobara::Ai::AnswerBot::Types::Model"
       ],
       "types_depended_on": [
-        "Foobara::Ai::AnswerBot::model",
-        "Foobara::Ai::AnswerBot::service",
+        "Foobara::Ai::AnswerBot::model_enum",
+        "Foobara::Ai::AnswerBot::service_enum",
         "array",
         "attributes",
         "duck",
@@ -2943,10 +2949,10 @@
         "type": "attributes",
         "element_type_declarations": {
           "id": {
-            "type": "Foobara::Ai::AnswerBot::model"
+            "type": "Foobara::Ai::AnswerBot::model_enum"
           },
           "service": {
-            "type": "Foobara::Ai::AnswerBot::service"
+            "type": "Foobara::Ai::AnswerBot::service_enum"
           }
         },
         "required": [
@@ -2960,22 +2966,22 @@
       "model_base_class": "Foobara::Model",
       "model_class": "Foobara::Ai::AnswerBot::Types::Model"
     },
-    "Foobara::Ai::AnswerBot::model": {
+    "Foobara::Ai::AnswerBot::model_enum": {
       "scoped_path": [
-        "model"
+        "model_enum"
       ],
-      "scoped_name": "model",
-      "scoped_short_name": "model",
+      "scoped_name": "model_enum",
+      "scoped_short_name": "model_enum",
       "scoped_prefix": null,
       "scoped_full_path": [
         "Foobara",
         "Ai",
         "AnswerBot",
-        "model"
+        "model_enum"
       ],
-      "scoped_full_name": "Foobara::Ai::AnswerBot::model",
+      "scoped_full_name": "Foobara::Ai::AnswerBot::model_enum",
       "scoped_category": "type",
-      "reference": "Foobara::Ai::AnswerBot::model",
+      "reference": "Foobara::Ai::AnswerBot::model_enum",
       "domain": "Foobara::Ai::AnswerBot",
       "organization": "Foobara::Ai",
       "parent": [
@@ -3031,6 +3037,8 @@
           "gpt-4-turbo",
           "gpt-4-turbo-2024-04-09",
           "gpt-4-turbo-preview",
+          "gpt-4.5-preview",
+          "gpt-4.5-preview-2025-02-27",
           "gpt-4o",
           "gpt-4o-2024-05-13",
           "gpt-4o-2024-08-06",
@@ -3144,6 +3152,8 @@
                   "gpt-4-turbo",
                   "gpt-4-turbo-2024-04-09",
                   "gpt-4-turbo-preview",
+                  "gpt-4.5-preview",
+                  "gpt-4.5-preview-2025-02-27",
                   "gpt-4o",
                   "gpt-4o-2024-05-13",
                   "gpt-4o-2024-08-06",
@@ -3257,6 +3267,8 @@
               "gpt-4-turbo",
               "gpt-4-turbo-2024-04-09",
               "gpt-4-turbo-preview",
+              "gpt-4.5-preview",
+              "gpt-4.5-preview-2025-02-27",
               "gpt-4o",
               "gpt-4o-2024-05-13",
               "gpt-4o-2024-08-06",
@@ -3344,22 +3356,22 @@
         ]
       }
     },
-    "Foobara::Ai::AnswerBot::service": {
+    "Foobara::Ai::AnswerBot::service_enum": {
       "scoped_path": [
-        "service"
+        "service_enum"
       ],
-      "scoped_name": "service",
-      "scoped_short_name": "service",
+      "scoped_name": "service_enum",
+      "scoped_short_name": "service_enum",
       "scoped_prefix": null,
       "scoped_full_path": [
         "Foobara",
         "Ai",
         "AnswerBot",
-        "service"
+        "service_enum"
       ],
-      "scoped_full_name": "Foobara::Ai::AnswerBot::service",
+      "scoped_full_name": "Foobara::Ai::AnswerBot::service_enum",
       "scoped_category": "type",
-      "reference": "Foobara::Ai::AnswerBot::service",
+      "reference": "Foobara::Ai::AnswerBot::service_enum",
       "domain": "Foobara::Ai::AnswerBot",
       "organization": "Foobara::Ai",
       "parent": [
@@ -4181,7 +4193,7 @@
     }
   },
   "metadata": {
-    "when": "2025-02-26 13:58:46 -0800",
+    "when": "2025-03-01 09:19:37 -0800",
     "url": "http://localhost:9292/manifest"
   }
 }

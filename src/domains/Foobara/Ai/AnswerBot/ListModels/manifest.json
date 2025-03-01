@@ -57,8 +57,8 @@
       "processor_manifest_data": {
         "casting": {
           "cast_to": {
-            "allow_nil": true,
-            "type": "string"
+            "type": "string",
+            "allow_nil": true
           }
         }
       }
