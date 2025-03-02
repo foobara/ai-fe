@@ -23,6 +23,8 @@ interface ModelResult {
   result: string | null
   error: string | null
   loading: boolean
+  startTime?: number
+  responseTime?: number
 }
 
 export default function AskForm (): JSX.Element {
@@ -99,11 +101,12 @@ export default function AskForm (): JSX.Element {
       return
     }
 
-    // Update this model's status to loading
+    // Update this model's status to loading and capture start time
+    const startTime = Date.now()
     setModelResults(prev =>
       prev.map(result =>
         result.modelId === modelId
-          ? { ...result, loading: true, result: 'Thinking...', error: null }
+          ? { ...result, loading: true, result: 'Thinking...', error: null, startTime }
           : result
       )
     )
@@ -122,27 +125,30 @@ export default function AskForm (): JSX.Element {
         const resultData: AskResult = outcome.result
         const resultText = typeof resultData === 'string' ? resultData : JSON.stringify(resultData)
 
+        const responseTime = Date.now() - (modelResults.find(r => r.modelId === modelId)?.startTime || Date.now())
         setModelResults(prev =>
           prev.map(result =>
             result.modelId === modelId
-              ? { ...result, loading: false, result: resultText, error: null }
+              ? { ...result, loading: false, result: resultText, error: null, responseTime }
               : result
           )
         )
       } else {
+        const responseTime = Date.now() - (modelResults.find(r => r.modelId === modelId)?.startTime || Date.now())
         setModelResults(prev =>
           prev.map(result =>
             result.modelId === modelId
-              ? { ...result, loading: false, result: null, error: outcome.errorMessage }
+              ? { ...result, loading: false, result: null, error: outcome.errorMessage, responseTime }
               : result
           )
         )
       }
     } catch (error) {
+      const responseTime = Date.now() - (modelResults.find(r => r.modelId === modelId)?.startTime || Date.now())
       setModelResults(prev =>
         prev.map(result =>
           result.modelId === modelId
-            ? { ...result, loading: false, result: null, error: 'Error executing command' }
+            ? { ...result, loading: false, result: null, error: 'Error executing command', responseTime }
             : result
         )
       )
@@ -207,6 +213,9 @@ export default function AskForm (): JSX.Element {
             {modelResults.map(result => (
               <div key={result.modelId} className="model-result">
                 <h4>{result.modelId}</h4>
+                {result.responseTime && (
+                  <p className="response-time">{(result.responseTime / 1000).toFixed(2)}s</p>
+                )}
                 {result.loading && <p>Thinking...</p>}
                 {result.error && <p className="error-message">{result.error}</p>}
                 {result.result && !result.loading && (
