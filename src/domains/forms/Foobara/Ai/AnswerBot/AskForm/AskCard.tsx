@@ -2,14 +2,14 @@ import React, { useState, useEffect, type JSX } from 'react'
 
 import ReactMarkdown from 'react-markdown'
 
-import { type Outcome } from '../../../..//base/Outcome'
+import { type Outcome } from '../../../../..//base/Outcome'
 
-import { Ask } from '../../../../Foobara/Ai/AnswerBot/Ask'
-import type AskInputs from '../../../../Foobara/Ai/AnswerBot/Ask/Inputs'
-import type AskResult from '../../../../Foobara/Ai/AnswerBot/Ask/Result'
-import { type Error as AskError } from '../../../../Foobara/Ai/AnswerBot/Ask/Errors'
+import { Ask } from '../../../../../Foobara/Ai/AnswerBot/Ask'
+import type AskInputs from '../../../../../Foobara/Ai/AnswerBot/Ask/Inputs'
+import type AskResult from '../../../../../Foobara/Ai/AnswerBot/Ask/Result'
+import { type Error as AskError } from '../../../../../Foobara/Ai/AnswerBot/Ask/Errors'
 
-import { type model_enum } from '../../../../Foobara/Ai/AnswerBot/Types/model_enum'
+import { type model_enum } from '../../../../../Foobara/Ai/AnswerBot/Types/model_enum'
 
 interface AskCardProps {
   question: string

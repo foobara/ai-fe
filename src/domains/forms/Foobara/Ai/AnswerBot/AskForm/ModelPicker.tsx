@@ -1,14 +1,14 @@
 import React, { useState, useEffect, type JSX } from 'react'
 
-import { type Outcome } from '../../../..//base/Outcome'
+import { type Outcome } from '../../../../..//base/Outcome'
 
-import { ListModels } from '../../../../Foobara/Ai/AnswerBot/ListModels'
-import type ListModelsResult from '../../../../Foobara/Ai/AnswerBot/ListModels/Result'
-import { type Error as ListModelsError } from '../../../../Foobara/Ai/AnswerBot/ListModels/Errors'
+import { ListModels } from '../../../../../Foobara/Ai/AnswerBot/ListModels'
+import type ListModelsResult from '../../../../../Foobara/Ai/AnswerBot/ListModels/Result'
+import { type Error as ListModelsError } from '../../../../../Foobara/Ai/AnswerBot/ListModels/Errors'
 
-import { type model_enum } from '../../../../Foobara/Ai/AnswerBot/Types/model_enum'
-import { type service_enum } from '../../../../Foobara/Ai/AnswerBot/Types/service_enum'
-import { type Model } from '../../../../Foobara/Ai/AnswerBot/Types/Model'
+import { type model_enum } from '../../../../../Foobara/Ai/AnswerBot/Types/model_enum'
+import { type service_enum } from '../../../../../Foobara/Ai/AnswerBot/Types/service_enum'
+import { type Model } from '../../../../../Foobara/Ai/AnswerBot/Types/Model'
 
 type ModelsByService = Record<service_enum, Model[]>
 

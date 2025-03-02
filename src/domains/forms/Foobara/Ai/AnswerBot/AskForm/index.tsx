@@ -1,6 +1,6 @@
 import React, { useState, type JSX } from 'react'
 
-import { type model_enum } from '../../../../Foobara/Ai/AnswerBot/Types/model_enum'
+import { type model_enum } from '../../../../../Foobara/Ai/AnswerBot/Types/model_enum'
 
 import AskCard from './AskCard'
 import ModelPicker from './ModelPicker'
