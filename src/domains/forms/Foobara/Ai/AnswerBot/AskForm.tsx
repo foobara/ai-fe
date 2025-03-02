@@ -32,7 +32,8 @@ export default function AskForm (): JSX.Element {
   const [modelResults, setModelResults] = useState<ModelResult[]>([])
   const [error, setError] = useState<string | null>(null)
   const [loadingModels, setLoadingModels] = useState<boolean>(false)
-  const [modelsByService, setModelsByService] = useState<ModelsByService>({} as ModelsByService)
+  const defaultModelsByService: ModelsByService = {}
+  const [modelsByService, setModelsByService] = useState<ModelsByService>(defaultModelsByService)
 
   useEffect(() => {
     const fetchModels = async (): Promise<void> => {
@@ -48,9 +49,9 @@ export default function AskForm (): JSX.Element {
           const groupedModels: ModelsByService = {}
 
           models.forEach(model => {
-            const service= model.service
+            const service = model.service
 
-            if (!groupedModels[service]) {
+            if (!(service in groupedModels)) {
               groupedModels[service] = []
             }
 
@@ -116,36 +117,25 @@ export default function AskForm (): JSX.Element {
     }
 
     const command = new Ask(inputs)
-
     const startTime = Date.now()
-    try {
-      const outcome: Outcome<AskResult, AskError> = await command.run()
-      const responseTime = Date.now() - startTime
+    const outcome: Outcome<AskResult, AskError> = await command.run()
+    const responseTime = Date.now() - startTime
 
-      if (outcome.isSuccess()) {
-        const resultText: AskResult = outcome.result
+    if (outcome.isSuccess()) {
+      const resultText: AskResult = outcome.result
 
-        setModelResults(prev =>
-          prev.map(result =>
-            result.modelId === modelId
-              ? { ...result, loading: false, result: resultText, error: null, responseTime }
-              : result
-          )
-        )
-      } else {
-        setModelResults(prev =>
-          prev.map(result =>
-            result.modelId === modelId
-              ? { ...result, loading: false, result: null, error: outcome.errorMessage, responseTime }
-              : result
-          )
-        )
-      }
-    } catch (error) {
       setModelResults(prev =>
         prev.map(result =>
           result.modelId === modelId
-            ? { ...result, loading: false, result: null, error: 'Error executing command', responseTime }
+            ? { ...result, loading: false, result: resultText, error: null, responseTime }
+            : result
+        )
+      )
+    } else {
+      setModelResults(prev =>
+        prev.map(result =>
+          result.modelId === modelId
+            ? { ...result, loading: false, result: null, error: outcome.errorMessage, responseTime }
             : result
         )
       )
@@ -176,13 +166,13 @@ export default function AskForm (): JSX.Element {
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>): void => {
-    if (e.key === 'Enter' && question && selectedModels.length > 0) {
+    if (e.key === 'Enter' && question != null && selectedModels.length > 0) {
       runAll()
     }
   }
 
   // Check if any model result is being processed or has been processed
-  const hasAsked = modelResults.some(result => result.loading || result.result || result.error)
+  const hasAsked = modelResults.some(result => result.loading || result.result != null || result.error != null)
 
   return (
     <div className="CommandForm">
@@ -198,7 +188,7 @@ export default function AskForm (): JSX.Element {
             />
             <button
               onClick={runAll}
-              disabled={selectedModels.length === 0 || !question}
+              disabled={selectedModels.length === 0 || question != null}
             >
               Ask Selected Models ({selectedModels.length})
             </button>
@@ -210,12 +200,12 @@ export default function AskForm (): JSX.Element {
             {modelResults.map(result => (
               <div key={result.modelId} className="model-result">
                 <h4>{result.modelId}</h4>
-                {result.responseTime && (
+                {result.responseTime != null && (
                   <p className="response-time">{(result.responseTime / 1000).toFixed(2)}s</p>
                 )}
                 {result.loading && <p>Thinking...</p>}
-                {result.error && <p className="error-message">{result.error}</p>}
-                {result.result && !result.loading && (
+                {result.error != null && <p className="error-message">{result.error}</p>}
+                {result.result != null && !result.loading && (
                   <div className="markdown-result">
                     <ReactMarkdown>{result.result}</ReactMarkdown>
                   </div>
@@ -253,7 +243,7 @@ export default function AskForm (): JSX.Element {
         </div>
       </div>
 
-      {error && <p className="error-message">{error}</p>}
+      {error != null && <p className="error-message">{error}</p>}
 
     </div>
   )

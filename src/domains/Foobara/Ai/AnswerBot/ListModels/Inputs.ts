@@ -1,3 +1,3 @@
-export default interface Inputs {
+type Inputs = unknown
 
-}
+export default Inputs
