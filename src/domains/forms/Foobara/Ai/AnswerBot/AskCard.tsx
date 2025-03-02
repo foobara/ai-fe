@@ -27,18 +27,18 @@ export default function AskCard ({ question, modelId }: AskCardProps): JSX.Eleme
     const command: Ask = new Ask(inputs)
 
     const startTime = Date.now()
-    command.run().then(setOutcome).catch(setError).finally(() => { setEndTime(Date.now()) })
     setStartTime(startTime)
+    command.run().then(setOutcome).catch(setError).finally(() => { setEndTime(Date.now()) })
   }, [])
 
   return (
-    <div key={modelId} className="model-result">
+    <div className="model-result">
       <h4>{modelId}</h4>
       {endTime != null && startTime != null && (
-      <p className="response-time">{((startTime - endTime) / 1000).toFixed(2)}s</p>
+      <p className="response-time">{((endTime - startTime) / 1000).toFixed(2)}s</p>
       )}
       <div>
-        {error == null
+        {error != null
           ? (<p className="error-message">{JSON.stringify(error)}</p>)
           : (
               outcome == null
@@ -53,5 +53,6 @@ export default function AskCard ({ question, modelId }: AskCardProps): JSX.Eleme
             )
       }
       </div>
-  </div>)
+    </div>
+  )
 }
