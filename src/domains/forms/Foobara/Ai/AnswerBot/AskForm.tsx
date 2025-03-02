@@ -31,18 +31,10 @@ export default function AskForm (): JSX.Element {
   const [selectedModels, setSelectedModels] = useState<model_enum[]>([])
   const [modelResults, setModelResults] = useState<ModelResult[]>([])
   const [error, setError] = useState<string | null>(null)
-  const [loadingModels, setLoadingModels] = useState<boolean>(false)
-  const defaultModelsByService: ModelsByService = {
-    'open-ai': [],
-    ollama: [],
-    anthropic: []
-  }
-  const [modelsByService, setModelsByService] = useState<ModelsByService>(defaultModelsByService)
+  const [modelsByService, setModelsByService] = useState<ModelsByService | null>(null)
 
   useEffect(() => {
     const fetchModels = async (): Promise<void> => {
-      setLoadingModels(true)
-
       const command = new ListModels({})
 
       try {
@@ -50,7 +42,11 @@ export default function AskForm (): JSX.Element {
 
         if (outcome.isSuccess()) {
           const models = outcome.result
-          const groupedModels: ModelsByService = { ...modelsByService }
+          const groupedModels: ModelsByService = {
+            'open-ai': [],
+            ollama: [],
+            anthropic: []
+          }
 
           models.forEach(model => {
             groupedModels[model.service].push(model)
@@ -62,8 +58,6 @@ export default function AskForm (): JSX.Element {
         }
       } catch (err) {
         setError(`Error loading models ${JSON.stringify(err)}`)
-      } finally {
-        setLoadingModels(false)
       }
     }
 
@@ -175,7 +169,7 @@ export default function AskForm (): JSX.Element {
   return (
     <div className="CommandForm">
       <div>
-        {!loadingModels && (
+        {modelsByService != null && (
           <div className="question-container">
             <input
               type="text"
@@ -214,7 +208,7 @@ export default function AskForm (): JSX.Element {
         )}
 
         <div className="models-container">
-          {loadingModels
+          {modelsByService == null
             ? (
               <p>Loading models...</p>
               )
