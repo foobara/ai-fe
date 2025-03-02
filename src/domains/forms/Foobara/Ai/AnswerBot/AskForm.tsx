@@ -32,7 +32,11 @@ export default function AskForm (): JSX.Element {
   const [modelResults, setModelResults] = useState<ModelResult[]>([])
   const [error, setError] = useState<string | null>(null)
   const [loadingModels, setLoadingModels] = useState<boolean>(false)
-  const defaultModelsByService: ModelsByService = {}
+  const defaultModelsByService: ModelsByService = {
+    'open-ai': [],
+    ollama: [],
+    anthropic: []
+  }
   const [modelsByService, setModelsByService] = useState<ModelsByService>(defaultModelsByService)
 
   useEffect(() => {
@@ -46,16 +50,10 @@ export default function AskForm (): JSX.Element {
 
         if (outcome.isSuccess()) {
           const models = outcome.result
-          const groupedModels: ModelsByService = {}
+          const groupedModels: ModelsByService = { ...modelsByService }
 
           models.forEach(model => {
-            const service = model.service
-
-            if (!(service in groupedModels)) {
-              groupedModels[service] = []
-            }
-
-            groupedModels[service].push(model)
+            groupedModels[model.service].push(model)
           })
 
           setModelsByService(groupedModels)
