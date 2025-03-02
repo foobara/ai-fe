@@ -23,7 +23,6 @@ interface ModelResult {
   result: string | null
   error: string | null
   loading: boolean
-  startTime?: number
   responseTime?: number
 }
 
@@ -33,13 +32,15 @@ export default function AskForm (): JSX.Element {
   const [modelResults, setModelResults] = useState<ModelResult[]>([])
   const [error, setError] = useState<string | null>(null)
   const [loadingModels, setLoadingModels] = useState<boolean>(false)
-  const [modelsByService, setModelsByService] = useState<ModelsByService>({})
+  const [modelsByService, setModelsByService] = useState<ModelsByService>({} as ModelsByService)
 
   useEffect(() => {
     const fetchModels = async (): Promise<void> => {
       setLoadingModels(true)
+
+      const command = new ListModels({})
+
       try {
-        const command = new ListModels({})
         const outcome: Outcome<ListModelsResult, ListModelsError> = await command.run()
 
         if (outcome.isSuccess()) {
@@ -47,13 +48,13 @@ export default function AskForm (): JSX.Element {
           const groupedModels: ModelsByService = {}
 
           models.forEach(model => {
-            if (!groupedModels[model.service]) {
-              groupedModels[model.service] = []
+            const service= model.service
+
+            if (!groupedModels[service]) {
+              groupedModels[service] = []
             }
-            groupedModels[model.service].push({
-              id: model.id,
-              service: model.service
-            })
+
+            groupedModels[service].push(model)
           })
 
           setModelsByService(groupedModels)
@@ -101,12 +102,10 @@ export default function AskForm (): JSX.Element {
       return
     }
 
-    // Update this model's status to loading and capture start time
-    const startTime = Date.now()
     setModelResults(prev =>
       prev.map(result =>
         result.modelId === modelId
-          ? { ...result, loading: true, result: 'Thinking...', error: null, startTime }
+          ? { ...result, loading: true, result: 'Thinking...', error: null }
           : result
       )
     )
@@ -118,14 +117,14 @@ export default function AskForm (): JSX.Element {
 
     const command = new Ask(inputs)
 
+    const startTime = Date.now()
     try {
       const outcome: Outcome<AskResult, AskError> = await command.run()
+      const responseTime = Date.now() - startTime
 
       if (outcome.isSuccess()) {
-        const resultData: AskResult = outcome.result
-        const resultText = typeof resultData === 'string' ? resultData : JSON.stringify(resultData)
+        const resultText: AskResult = outcome.result
 
-        const responseTime = Date.now() - (modelResults.find(r => r.modelId === modelId)?.startTime || Date.now())
         setModelResults(prev =>
           prev.map(result =>
             result.modelId === modelId
@@ -134,7 +133,6 @@ export default function AskForm (): JSX.Element {
           )
         )
       } else {
-        const responseTime = Date.now() - (modelResults.find(r => r.modelId === modelId)?.startTime || Date.now())
         setModelResults(prev =>
           prev.map(result =>
             result.modelId === modelId
@@ -144,7 +142,6 @@ export default function AskForm (): JSX.Element {
         )
       }
     } catch (error) {
-      const responseTime = Date.now() - (modelResults.find(r => r.modelId === modelId)?.startTime || Date.now())
       setModelResults(prev =>
         prev.map(result =>
           result.modelId === modelId
@@ -156,7 +153,7 @@ export default function AskForm (): JSX.Element {
   }
 
   const runAll = toVoid(async (): Promise<void> => {
-    if (question == null || selectedModels.length === 0) {
+    if (question == null) {
       return
     }
 
